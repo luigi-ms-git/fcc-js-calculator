@@ -1,0 +1,18 @@
+main {
+  margin-top: 10vh;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+}
+
+#display {
+  height: 30%;
+  margin-bottom: 3%;
+}
+
+#display * { height: 50%; }
+
+#numbers > *, #operators > * { width: 8.55vw; }
+
+#numbers { margin-left: 2vw; }
+
+#operators { margin-left: 4vw; }
