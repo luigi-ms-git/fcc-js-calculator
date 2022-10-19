@@ -1,3 +1,15 @@
+@media (min-width: 0px) and (max-width: 980px) {
+  #numbers > *, #operators > * { 
+    width: 8.55vw;
+  }
+}
+
+@media (min-width: 980px) and (max-width: 1400px){
+  #numbers > *, #operators > * {
+    width: 6vw;
+  }
+}
+
 main {
   margin-top: 10vh;
   padding-top: 3vh;
@@ -11,8 +23,9 @@ main {
 
 #display * { height: 50%; }
 
-#numbers > *, #operators > * { width: 8.55vw; }
-
-#numbers { margin-left: 2vw; }
+#numbers { 
+  margin-left: 2vw;
+  margin-right: -2vw;
+}
 
 #operators { margin-left: 4vw; }
