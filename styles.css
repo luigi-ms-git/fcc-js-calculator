@@ -1,13 +1,13 @@
 @media (min-width: 0px) and (max-width: 980px) {
-  #numbers > *, #operators > * { 
-    width: 8.55vw;
-  }
+  #numbers > *, #operators > * { width: 8.55vw; }
+  
+  #zero { width: 18vw; }
 }
 
 @media (min-width: 980px) and (max-width: 1400px){
-  #numbers > *, #operators > * {
-    width: 6vw;
-  }
+  #numbers > *, #operators > * { width: 6vw; }
+  
+  #zero { width: 12.4vw; }
 }
 
 main {

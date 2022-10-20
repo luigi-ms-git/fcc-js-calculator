@@ -14,35 +14,68 @@
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <main class="container bg-dark">
+  <main id="app" class="container bg-dark">
     <div class="row">
       <div class="col-1 col-md-1" id="operators">
-        <button id="plus" class="btn btn-outline-success">+</button>
-        <button class="btn btn-outline-success">-</button>
-        <button class="btn btn-outline-success">*</button>
-        <button class="btn btn-outline-success">/</button>
+        <button id="add" 
+          class="btn btn-outline-success" 
+          @click="concat">+</button>
+        <button id="subtract" 
+          class="btn btn-outline-success" 
+          @click="concat">-</button>
+        <button id="multiply" 
+          class="btn btn-outline-success" 
+          @click="concat">*</button>
+        <button id="divide" 
+          class="btn btn-outline-success" 
+          @click="concat">/</button>
       </div>
       <div class="col-4 col-md-4" id="numbers">
-        <button class="btn btn-outline-primary">1</button>
-        <button class="btn btn-outline-primary">2</button>
-        <button class="btn btn-outline-primary">3</button>
-        <button class="btn btn-outline-primary">4</button>
-        <button class="btn btn-outline-primary">5</button>
-        <button class="btn btn-outline-primary">6</button>
-        <button class="btn btn-outline-primary">7</button>
-        <button class="btn btn-outline-primary">8</button>
-        <button class="btn btn-outline-primary">9</button>
-        <button class="btn btn-outline-primary">0</button>
-        <button class="btn btn-outline-primary">-</button>
-        <button class="btn btn-outline-primary">.</button>
+        <button id="one" 
+          class="btn btn-outline-primary" 
+          @click="concat">1</button>
+        <button id="two" 
+          class="btn btn-outline-primary"
+          @click="concat">2</button>
+        <button id="three" 
+          class="btn btn-outline-primary"
+          @click="concat">3</button>
+        <button id="four" 
+          class="btn btn-outline-primary"
+          @click="concat">4</button>
+        <button id="five" 
+          class="btn btn-outline-primary"
+          @click="concat">5</button>
+        <button id="six" 
+          class="btn btn-outline-primary"
+          @click="concat">6</button>
+        <button id="seven" 
+          class="btn btn-outline-primary"
+          @click="concat">7</button>
+        <button id="eight" 
+          class="btn btn-outline-primary"
+          @click="concat">8</button>
+        <button id="nine" 
+          class="btn btn-outline-primary"
+          @click="concat">9</button>
+        <button id="zero" 
+          class="btn btn-outline-primary"
+          @click="concat">0</button>
+        <button id="decimal" 
+          class="btn btn-outline-primary"
+          @click="concat">.</button>
       </div>
       <div class="col-6 col-md-6">
         <div id="display" class="d-flex flex-column border border-success rounded">
-          <output class="text-light text-end text-wrap"></output>
-          <output class="border-top border-success text-light text-end text-wrap"></output>
+          <output class="text-light text-end text-wrap">{{ expr }}</output>
+          <output class="border-top border-success text-light text-end text-wrap">{{ result }}</output>
         </div>
-        <button class="btn btn-primary">=</button>
-        <button class="btn btn-outline-success">AC</button>
+        <button id="equals" 
+          class="btn btn-primary"
+          @click="calculate">=</button>
+        <button id="clear" 
+          class="btn btn-outline-success"
+          @click="clear">AC</button>
       </div>
     </div>
   </main>
@@ -51,17 +84,51 @@
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
 		crossorigin="anonymous"></script>
 <!--	<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
-
+-->
   <script type="module">
     import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
   
     createApp({
       data() {
-        return {}
+        return {
+          expr: "",
+          result: 0
+        }
       },
-      created() {}
-    }).mount('#buttons');
+      watch: {
+        result(newResult, oldResult){
+          if(newResult === 0) this.expr = "";
+          else if(newResult === "ERROR") this.expr = ""
+          else this.expr = newResult;
+        }
+      },
+      methods: {
+        sum(x, y){ return x + y; },
+        sub(x, y){ return x - y; },
+        mul(x, y){ return x * y; },
+        div(x, y){ return x / y; },
+        concat(ev){
+          this.expr += ev.target.innerText;
+        },
+        calculate(){
+          let res = eval(this.expr);
+          if(Number.isInteger(res)){
+            this.result = res;
+          }else if(isNaN(res) || res === undefined){
+            this.result = "ERROR";
+          }
+          else{
+            this.result = Math.round(res * 100) / 100;
+          }
+        },
+        clear(ev){
+          this.expr = "";
+          this.result = 0;
+        }
+      }
+    }).mount('#app');
   </script>
-  -->
+  
+  <script src="./script.js"></script>
 </body>
 </html>
